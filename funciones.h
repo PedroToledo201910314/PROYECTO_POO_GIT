@@ -56,7 +56,7 @@ class almacen{
   void redimensionar();
 };
 
-class intruccion{
+class instruccion{
   private:
     numero n_robot;
     letra operacion;
