@@ -13,6 +13,22 @@ class robot {
   public:
   
 
+ class slot{
+  private:
+  numero* posicion = new numero(2);
+  bool tipo_slot;
+  string tipo_producto;
+  numero cantidad;
+  letra estado;
+  numero capacidad;
+  public:
+  void adicionar();
+  void retirar();
+  letra get_estado();
+  numero get_cantidad();
+};
+  
+
 class almacen{
   private:
   numero filas;
@@ -27,4 +43,4 @@ class almacen{
   void redimensionar();
 }
 
-#endif //UNTITLED16_FUNCIONES_H
+#endif
