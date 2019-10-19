@@ -2,8 +2,12 @@
 #define FUNCIONES_H
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
-
+class robot {
+  private:
+  
+  public:
+  
+  
 #endif //UNTITLED16_FUNCIONES_H
