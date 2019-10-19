@@ -54,6 +54,6 @@ class almacen{
   void crear();
   void imprime();
   void redimensionar();
-}
+};
 
 #endif
