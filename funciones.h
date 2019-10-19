@@ -1,8 +1,7 @@
-#ifndef UNTITLED16_FUNCIONES_H
-#define UNTITLED16_FUNCIONES_H
+#ifndef FUNCIONES_H
+#define FUNCIONES_H
 
 #include <iostream>
-#include "triangulo.h"
 using namespace std;
 
 
