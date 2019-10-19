@@ -56,4 +56,15 @@ class almacen{
   void redimensionar();
 };
 
+class intruccion{
+  private:
+    numero n_robot;
+    letra operacion;
+    numero* destino= new numero(2);
+  public:
+    intruccion();
+    instruccion(numero _n_robot, letra _operacion, numero* destino);
+    void crear_vector_instrucciones();
+    void llenar_vector_instrucciones();
+};
 #endif
