@@ -1,70 +1,30 @@
 #ifndef PROYECTO_H
 #define PROYECTO_H
+#include <iostream>
 #include <vector>
 #include <string>
+#include <iomanip>
+#include <map>
+#include <cmath>
 using namespace std;
 using numero = int;
 using letra = char;
-using arreglo=vector<char>
+using arreglo=vector<char>;
+#include "robot.h"
+#include "instruccion.h"
 
-class robot {
-  private:
-  numero* home=new numero(2);
-  string tipo_producto;
-  numero* ubicacion_actual=new numero(2);
-  numero numero_robot;
-  numero numero_intruccion;
-  string estado;
-  public:
-  //Constructor por defecto
-  robot();
-  robot(numero* _home, string _tipo_producto, numero* _ubicacion, numero numero_robot, numero numero_instruccion, string _estado);
-  void dejar();
-  void recoger();
-  void mover();
-  bool colision();
-};
-  
+vector<vector<char>> llena_almacen (vector <int> home_filas,vector <int> home_columnas, int filas, int columnas);
 
- class slot{
-  private:
-  numero* posicion = new numero(2);
-  bool tipo_slot;
-  string tipo_producto;
-  numero cantidad;
-  letra estado;
-  numero capacidad;
-  public:
-  void adicionar();
-  void retirar();
-  letra get_estado();
-  numero get_cantidad();
-};
-  
+void cantidad_robots(int & n_robots);
 
-class almacen{
-  private:
-  numero filas;
-  numero columnas;
-  numero capacidad;
-  vector <arreglo> matriz;
-  public:
-  almacen();
-  almacen(int &_filas, int &_columnas, int &_capacidad, vector <arreglo> &_matriz);
-  void crear();
-  void imprime();
-  void redimensionar();
-};
+void ingresar(vector<robot>robots,numero num_robots);
 
-class instruccion{
-  private:
-    numero n_robot;
-    letra operacion;
-    numero* destino= new numero(2);
-  public:
-    intruccion();
-    instruccion(numero _n_robot, letra _operacion, numero* destino);
-    void crear_vector_instrucciones();
-    void llenar_vector_instrucciones();
-};
+void num_instrucciones(int &num);
+
+void pide_instrucciones(int n_instrucciones, vector<instruccion> instrucciones);
+
+//void leer_ruta(vector<vector<numero>>);
+
+void bienvenida();
+
 #endif
