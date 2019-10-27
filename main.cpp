@@ -1,13 +1,17 @@
-#include <iostream>
 #include "funciones.h"
+#include "almacen.h"
+#include "instruccion.h"
+#include "robot.h"
+#include "slot.h"
 #include <string>
-#include <vector>
-#include <iomanip>
-#include <map>
+#include <fstream>
+#include <stdio.h>
 #include <cmath>
+
 using namespace std;
 
 int main() {
+  bienvenida();
   almacen a1;
   a1.crear();
   a1.imprime();
