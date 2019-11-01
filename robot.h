@@ -32,12 +32,15 @@ class robot{
     vector<instruccion> get_istrucciones();
     string get_estado();
 
-    void dejar(string tipo_producto,slot posicion_slot, instruccion &la_instruccion);
-    void recoger();
-    numero** recorrido_ruta(numero*posicion_i,numero_posicion_f);
-    vector<vector<numero>>mover(vector<robot> robots,numero turno);
-    bool colision(vector<robot> robots);
-    ~robot();
+    void dejar(string tipo_producto, instruccion &la_instruccion, vector <vector<slot>> slots, vector<robot> &robots, almacen &a1);   
+  
+    void recoger(string tipo_producto, instruccion &la_instruccion, vector <vector<slot>> slots, vector<robot> &robots, almacen &a1);   
+  
+    vector<vector<numero>> mover(vector<robot> robots, robot robot_evaluado, numero* salida, numero* destino);
+
+    bool colision(vector<robot> robots, robot robot_evaluado);
+    virtual ~robot();
+
 };
   
 #endif
