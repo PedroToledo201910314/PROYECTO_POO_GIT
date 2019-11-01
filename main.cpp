@@ -28,6 +28,17 @@ int main() {
   vector<intruccion> instrucciones(num_ins);
   pide_instrucciones(num_ins,instrucciones);
   
+  //Reporte de estado instrucciones
+  realiza_instrucciones(instrucciones, robots, a1);
+  a1.imprime();
+
+  //Posiciones finales
+  a1.posiciones_finales(robots, num_robots, instrucciones);
+  a1.imprime();
+
+  //Estado de slots
+  reporte_slots(a1);
+  
   //REDIMENSIONAR ALMACEN
   string ans="";
   cout<<endl<<"Desea redimensionar almacen (Si/No): ";
