@@ -1,29 +1,26 @@
 #ifndef PROYECTO_H
 #define PROYECTO_H
-#include <iostream>
-#include <vector>
-#include <string>
-#include <iomanip>
-#include <map>
-#include <cmath>
-using namespace std;
-using numero = int;
-using letra = char;
-using arreglo=vector<char>;
+
+#include "funciones.h"
 #include "robot.h"
 #include "instruccion.h"
+#include "slot.h"
+#include "almacen.h"
+#include "biblioteca.h"
 
-vector<vector<char>> llena_almacen (vector <int> home_filas,vector <int> home_columnas, int filas, int columnas);
+vector<vector<letra>> instrucciones_robot (numero num_instrucciones,vector<instruccion> &instrucciones);
 
-void cantidad_robots(int & n_robots);
+void cantidad_robots(numero & n_robots);
 
-void ingresar(vector<robot>robots,numero num_robots);
+void ingresar(vector<robot> &robots, numero num_robots, vector<vector<slot>> slots);
 
-void num_instrucciones(int &num);
+void num_instrucciones(numero &num);
 
-void pide_instrucciones(int n_instrucciones, vector<instruccion> instrucciones);
+void pide_instrucciones(numero n_instrucciones, vector<instruccion> &instrucciones, vector<robot> robots);
 
-//void leer_ruta(vector<vector<numero>>);
+void realiza_instrucciones(vector<instruccion> instrucciones, vector<robot> robots, almacen &a1);
+
+void reporte_slots(almacen almacen_de_slots);
 
 void bienvenida();
 
