@@ -1,13 +1,8 @@
 #include "almacen.h"
-using namespace std;
-
-almacen::almacen(){
-  int filas;
-  int columnas;
-  int capacidad;
-  vector <vector<char>> matriz;
-  vector <vector<slot>> matriz_1;
-}
+#include "robot.h"
+#include "funciones.h"
+#include "biblioteca.h"
+#include "instruccion.h"
 
 void almacen::set_filas(numero filas){
   _filas = filas;
@@ -29,11 +24,29 @@ vector<arreglo> almacen::get_matriz(){
   return _matriz;
 }
 
+vector<vector<slot>> almacen::get_matriz_slots(){
+  return _matriz_slots;
+}
+
+numero almacen::get_filas(){
+  return _filas;
+}
+
+numero almacen::get_columnas(){
+  return _columnas;
+}
+
 void almacen::crear(){
   cout<<"Ingrese filas del almacen: ";cin>>_filas;
   cout<<"Ingrese columnas del almacen: ";cin>>_columnas;
   cout<<"Ingrese capacidad: ";cin>>_capacidad;
+  _matriz_slots = vector<vector<slot>> (_filas, vector <slot>(_columnas));
   _matriz = vector<arreglo>(_filas, arreglo(_columnas,' '));
+  for (size_t i=0;i<_filas;i++){
+    for(size_t j=0;j<_columnas;j++){
+      (_matriz_slots[i][j]).set_capacidad(_capacidad);
+    }
+  }
 }
 
 void almacen::imprime(){
@@ -78,10 +91,23 @@ void almacen::redimensionar(){
   _matriz_slots = vector<vector<slot>> (_filas, vector <slot>(_columnas));
 }
 
-vector<vector<char>> llena_almacen (vector <int> home_filas,vector <int> home_columnas, int filas, int columnas){
-  vector<vector<char>> matriz_almacen (filas,vector<char>(columnas,' '));
-  for (size_t k=0;k<home_filas.size();k++){
-    matriz_almacen[home_filas[k]][home_columnas[k]]='*';
+void almacen::llena_almacen (vector<robot> robots, numero num_robots){
+  for (size_t k=0;k<num_robots;k++){
+    char number='0'+k+1;
+    _matriz[(robots[k].get_home())[0]][(robots[k].get_home())[1]]=number;
   }
-  return matriz_almacen;
+}
+
+void almacen::dibujar(vector<vector<numero>> mover, numero n_robot){
+  for (size_t k=0;k<mover.size();k++){
+    char number='0'+n_robot;
+    _matriz[(mover[k][0])][(mover[k][1])]=number ;}
+}
+
+void almacen::posiciones_finales (vector<robot> robots, numero num_robots, vector<instruccion> &instrucciones){
+  for (size_t k=0;k<instrucciones.size();k++){
+    numero robot_asignado = instrucciones[k].get_n_robot();
+    robots[robot_asignado-1].set_ubicacion_actual((instrucciones[k].get_destino())[0],(instrucciones[k].get_destino())[1]);
+    _matriz[(robots[robot_asignado-1].get_ubicacion_actual())[0]][(robots[robot_asignado-1].get_ubicacion_actual())[1]]='+';
+  }
 }
