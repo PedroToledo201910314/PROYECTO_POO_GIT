@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.15)
+project(PROYECTOPOO__1_)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(.)
+
+add_executable(PROYECTOPOO__1_
+        almacen.cpp
+        almacen.h
+        biblioteca.h
+        funciones.cpp
+        funciones.h
+        instruccion.cpp
+        instruccion.h
+        main.cpp
+        robot.cpp
+        robot.h
+        slot.cpp
+        slot.h)
