@@ -4,29 +4,33 @@
 
 class slot{
 private:
-  numero* _posicion = new numero(2);
-  bool _tipo_slot;
+  coordenada _posx;
+  coordenada _posy;
+  bool _tipo_slot; 
   string _tipo_producto;
   numero _cantidad;
   letra _estado;
   numero _capacidad;
 public:
-  void set_posicion(numero* posicion);
+  slot_t(coordenada posx, coordenada posy, numero capacidad);
+  
+  void set_posicion(coordenada fila, coordenada columna);
   void set_tipo_slot(bool tipo_slot);
   void set_tipo_producto(string tipo_producto);
   void set_cantidad(numero cantidad);
   void set_estado(letra estado);
-  void set_capacidad(numero capacidad);
   
-  numero* get_posicion();
+  numero get_posicionx();
+  numero get_posiciony();
   bool get_tipo_slot();
   string get_tipo_producto();
   numero get_cantidad();
   letra get_estado();
   numero get_capacidad();
   
-  void adicionar();
-  void retirar();
+  void actualizar();
+  void adicionar(string tipo_producto);
+  void retirar(string tipo_producto);
 }
 
 #endif
