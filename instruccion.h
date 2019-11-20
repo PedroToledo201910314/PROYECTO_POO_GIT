@@ -7,16 +7,20 @@ private:
   numero _n_robot;
   letra _operacion;
   string _producto;
-  numero* _destino = new numero[2];
+  coordenada _destinox;
+  coordenada _destinoy;
+  bool estado;
 public:
-  void set_n_robot(numero n_robot);
-  void set_operacion(letra operacion);
-  void set_destino(numero fila, numero columna);
-  void set_producto(string producto);
-  numero* get_destino();
-  letra get_operacion();
+  instruccion_t(numero n_robot, letra operacion, string producto, coordenada dest_x, coordenada dest_y);
+  
+  void set_estado(bool _estado);
+  
   numero get_n_robot();
+  letra get_operacion();
   string get_producto(); 
+  coordenada get_destinox();
+  coordenada get_destinoy();
+  bool get_estado();
 }
 
 #endif
