@@ -2,7 +2,7 @@
 #define SLOT_H
 #include "biblioteca.h"
 
-class slot{
+class slot_t{
 private:
   coordenada _posx;
   coordenada _posy;

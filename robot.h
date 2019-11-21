@@ -1,46 +1,46 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
-#include <iostream>
-#include <vector>
+#include "instruccion.h"
+#include "slot.h"
 
-using numero=int;
-using letra=char;
-
-class robot{
+class robot_t{
   private:
-    numero* _home=new numero[2];
-    string _tipo_producto;
-    numero* _ubicacion_actual=new numero[2];
+    coordenada _homex;
+    coordenada _homey;
+    coordenada _ubicacion_actualx;
+    coordenada _ubicacion_actualy;
     numero _id_robot;
-    vector<instruccion> _instrucciones;
     string _estado;
   public:
+    vector<instruccion_t*> _instrucciones;
+    vector<columna> _ruta;
+  
+    robot_t(coordenada fila, coordenada columna, numero id_robot);
     //setter
-    void set_home(numero* home);
-    void set_tipo_producto(string tipo_producto);
-    void set_ubicacion_actual(numero* ubicación actual);
+    void set_ubicacion_actual(coordenada fila, coordenada columna);
     void set_id_robot(numero id_robot);
-    void set_instrucciones(vector<instruccion> instrucciones);
+    void set_instrucciones(instruccion_t* la_instruccion_recibida);
     void set_estado(string estado);
     
     //getter
-    numero* get_home();
-    string get_tipo_producto();
-    numero* get_ubicacion_actual();
+    coordenada get_homex();
+    coordenada get_homey();
+    coordenada get_ubicacion_actualx();
+    coordenada get_ubicacion_actualy();
     numero get_id_robot();
-    vector<instruccion> get_istrucciones();
+    vector<instruccion*> get_istrucciones();
+    instruccion_t* get_instruccion(numero indice);
     string get_estado();
+    vector<columna> get_ruta();
 
-    void dejar(string tipo_producto, instruccion &la_instruccion, vector <vector<slot>> slots, vector<robot> &robots, almacen &a1);   
+    void dejar(instruccion_t* ins, slot_t &slot_e);   
   
-    void recoger(string tipo_producto, instruccion &la_instruccion, vector <vector<slot>> slots, vector<robot> &robots, almacen &a1);   
+    void recoger(instruccion_t* ins, slot_t &slot_e);  
   
     vector<vector<numero>> mover(vector<robot> robots, robot robot_evaluado, numero* salida, numero* destino);
 
-    bool colision(vector<robot> robots, robot robot_evaluado);
-    virtual ~robot();
-
+    virtual ~robot_t();
 };
   
 #endif

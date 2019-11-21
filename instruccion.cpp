@@ -1,32 +1,33 @@
 #include "instruccion.h"
-#include "biblioteca.h"
 
-void instruccion::set_n_robot(numero n_robot){
+instruccion_t::instruccion_t(numero n_robot, letra operacion, string producto, coordenada dest_x, coordenada dest_y){
   _n_robot=n_robot;
-}
-void instruccion::set_operacion(letra operacion){
   _operacion=operacion;
-}
-void instruccion::set_destino(numero fila, numero columna){
-  _destino[0]=fila;
-  _destino[1]=columna;
-}
-void instruccion::set_producto(string producto){
   _producto=producto;
+  _destinox=dest_x;
+  _destinoy=dest_y;
+  estado = true;
 }
 
-numero* instruccion::get_destino(){
-  return _destino;
+void instruccion_t::set_estado(bool _estado){
+  estado = _estado;
 }
-//
+
+numero instruccion_t::get_n_robot(){
+  return _n_robot; 
+}
 letra instruccion::get_operacion(){
   return _operacion;
 }
-
-numero instruccion::get_n_robot(){
-  return _n_robot; 
-}
-
 string instruccion::get_producto() {
   return _producto;
+}
+coordenada instruccion_t::get_destinox(){
+  return _destinox;
+}
+coordenada instruccion_t::get_destinoy(){
+  return _destinoy;
+}
+bool instruccion_t::get_estado(){
+  return estado;
 }

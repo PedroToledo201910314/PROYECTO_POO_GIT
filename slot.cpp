@@ -9,7 +9,6 @@ slot_t::slot_t(coordenada posx, coordenada posy, numero capacidad){
   _estado='E';
   _cantidad=0;
 }
-
 void slot_t::set_posicion(coordenada fila, coordenada columna){
   _posx = fila;
   _posy = columna;
@@ -34,9 +33,11 @@ void slot_t::set_estado(letra estado){
 void slot_t::set_capacidad(numero capacidad){
   _capacidad=capacidad;
 }
-
 numero slot_t::get_posicionx(){
   return _posx;
+}
+numero slot_t::get_posiciony(){
+  return _posy;
 }
 numero slot_t::get_posiciony(){
   return _posy;
