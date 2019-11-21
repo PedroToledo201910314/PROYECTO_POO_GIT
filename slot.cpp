@@ -1,5 +1,4 @@
 #include "slot.h"
-#include "biblioteca.h"
 
 slot_t::slot_t(coordenada posx, coordenada posy, numero capacidad){
   _posx = posx;
@@ -14,7 +13,7 @@ void slot_t::set_posicion(coordenada fila, coordenada columna){
   _posx = fila;
   _posy = columna;
 }
-void slot::set_tipo_slot(bool tipo_slot){
+void slot_t::set_tipo_slot(bool tipo_slot){
   _tipo_slot=tipo_slot;
 }
 void slot_t::set_tipo_producto(string tipo_producto){
@@ -25,35 +24,37 @@ void slot_t::set_tipo_producto(string tipo_producto){
     _tipo_producto=tipo_producto; 
   }
 }
-void slot::set_cantidad(numero cantidad){
+void slot_t::set_cantidad(numero cantidad){
   _cantidad=cantidad;
 }
-void slot::set_estado(letra estado){
+void slot_t::set_estado(letra estado){
   _estado=estado;
 }
-void slot::set_capacidad(numero capacidad){
+void slot_t::set_capacidad(numero capacidad){
   _capacidad=capacidad;
 }
-
 numero slot_t::get_posicionx(){
   return _posx;
 }
 numero slot_t::get_posiciony(){
   return _posy;
 }
-bool slot::get_tipo_slot(){
+numero slot_t::get_posiciony(){
+  return _posy;
+}
+bool slot_t::get_tipo_slot(){
   return _tipo_slot;
 }
-string slot::get_tipo_producto(){
+string slot_t::get_tipo_producto(){
   return _tipo_producto;
 }
-numero slot::get_cantidad(){
+numero slot_t::get_cantidad(){
   return _cantidad;
 }
-letra slot::get_estado(){
+letra slot_t::get_estado(){
   return _estado;
 }
-numero slot::get_capacidad(){
+numero slot_t::get_capacidad(){
   return _capacidad;
 }
 
