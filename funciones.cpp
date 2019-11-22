@@ -153,23 +153,28 @@ void dibuja_ruta(numero columnas, numero filas, vector<arreglo> matriz){
 void reporte_slots(almacen_t* almacen_de_slots){
   cout<<endl<<endl<<"                      REPORTE DE SLOTS                   "<<endl;
   cout<<"__________________________________________________________"<<endl;
-  for (size_t i=0;i<almacen_de_slots->get_filas();i++){
-    for (size_t j=0;j<almacen_de_slots->get_columnas();j++){
-      cout<<endl<<endl<<"Slot "<<"["<<i<<"]["<<j<<"]:"<<endl;
-      cout<<"Tipo de producto: "<<almacen_de_slots->get_matriz_slots()[i][j]->get_tipo_producto()<<endl;
-      cout<<"Cantidad: "<<almacen_de_slots->get_matriz_slots()[i][j]->get_cantidad()<<endl;
-      cout<<"Estado: ";
-      if(almacen_de_slots->get_matriz_slots()[i][j]->get_estado()=='E'){
-        cout<<"Vacío";
-      }
-      else if(almacen_de_slots->get_matriz_slots()[i][j]->get_estado()=='L'){
-        cout<<"Libre";
-      }
-      else{
-        cout<<"Lleno";
-      }
+  numero x,y;
+  cout<<endl<<"Si desea finalizar proceso ingrese -1 en filas.";
+  do{
+    cout<<endl<<endl<<"Ingrese fila de slot: ";cin>>x;
+    if(x==-1){
+      break;
     }
-  }
+    cout<<"Ingrese columna de slot: ";cin>>y;
+    cout<<endl<<endl<<"Slot "<<"["<<x<<"]["<<y<<"]:"<<endl;
+    cout<<"Tipo de producto: "<<almacen_de_slots->get_matriz_slots()[x][y]->get_tipo_producto()<<endl;
+    cout<<"Cantidad: "<<almacen_de_slots->get_matriz_slots()[x][y]->get_cantidad()<<endl;
+    cout<<"Estado: ";
+    if(almacen_de_slots->get_matriz_slots()[x][y]->get_estado()=='E'){
+        cout<<"Vacío";
+    }
+    else if(almacen_de_slots->get_matriz_slots()[x][y]->get_estado()=='L'){
+        cout<<"Libre";
+    }
+    else{
+        cout<<"Lleno";
+    }
+  }while(true);
 }
 
 void reporte(vector<instruccion_t*> instrucciones, almacen_t* a1, numero num_ins){
@@ -232,7 +237,7 @@ void rutas(numero n_instrucciones,vector<instruccion_t*> instrucciones,numero fi
       vector<columna> v=a1->get_robots()[instrucciones[k]->get_n_robot()-1]->_ruta;
 
       vector<arreglo> dibujo_ruta (filas_almacen,arreglo(columnas_almacen,' '));
-
+      
       dibujo_ruta[a1->get_robots()[instrucciones[k]->get_n_robot()-1]->get_ubicacion_actualx()][a1->get_robots()[instrucciones[k]->get_n_robot()-1]->get_ubicacion_actualy()]='*';
     
       for (int i = 0; i < v.size(); ++i){
@@ -242,7 +247,8 @@ void rutas(numero n_instrucciones,vector<instruccion_t*> instrucciones,numero fi
           posicion[p]=v[i][j];
           p++;
         }
-        dibujo_ruta[posicion[0]][posicion[1]]='-';
+        char number='0'+i+1;
+        dibujo_ruta[posicion[0]][posicion[1]]=number;
 
         a1->get_robots()[instrucciones[k]->get_n_robot()-1]->set_ubicacion_actual(posicion[0],posicion[1]);
       }
