@@ -30,7 +30,7 @@ public:
   
   void actualizar();
   void adicionar(string tipo_producto);
-  void retirar(string tipo_producto);
+  void retirar();
 }
 
 #endif
