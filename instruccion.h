@@ -2,7 +2,7 @@
 #define INS_H
 #include "biblioteca.h"
 
-class instruccion{
+class instruccion_t{
 private:
   numero _n_robot;
   letra _operacion;
