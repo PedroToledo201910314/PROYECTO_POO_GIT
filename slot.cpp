@@ -73,23 +73,20 @@ void slot_t::actualizar(){
 void slot_t::adicionar(string tipo_producto){
   if(_tipo_producto==tipo_producto){
     if(_cantidad+1<=_capacidad){
-    _cantidad++;
+      _cantidad++;
     }
-  actualizar();
   }
   else if(_tipo_producto=="Ninguno"){
     _tipo_producto=tipo_producto;
     if(_cantidad+1<=_capacidad){
-    _cantidad++;
+      _cantidad++;
     }
-  actualizar();
   }
+  actualizar();
 }
 void slot_t::retirar(string tipo_producto){
-  if(_tipo_producto==tipo_producto){
-    if(_cantidad-1>=0){
+  if(_cantidad-1>=0){
     _cantidad--;
-    }
-  actualizar();
   }
+  actualizar();
 }
