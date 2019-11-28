@@ -71,9 +71,10 @@ void bienvenida(){
   archivo.close();
 }
 
-void cantidad_robots(int & n_robots){
+void cantidad_robots(int & n_robots, numero f, numero c){
+  cout<<endl<<"Nota: Mínimo 3 robots"<<endl<<endl;
   do{
-  cout<<"Ingrese numero de robots: ";cin>>n_robots;}while(n_robots<3);
+  cout<<"Ingrese numero de robots: ";cin>>n_robots;}while(n_robots<3||n_robots>(f*c)/2);
 }
 
 void num_instrucciones(int &num){
@@ -83,8 +84,11 @@ void num_instrucciones(int &num){
 
 void setea_almacen (numero &filas, numero &columnas, numero &capacidad){
   cout<<endl;
+  do{
   cout<<"Ingrese cantidad filas del almacen: ";cin>>filas;
   cout<<"Ingrese cantidad de columnas del almacen: ";cin>>columnas;
+  cout<<endl;
+  }while(filas<3||columnas<3);
   cout<<"Ingrese capacidad de cada slot: ";cin>>capacidad;
 }
 
@@ -190,7 +194,7 @@ void reporte_slots(almacen_t* almacen_de_slots){
 }
 
 void reporte(vector<instruccion_t*> instrucciones, almacen_t* a1, numero num_ins){
-  cout<<endl<<"                   REPORTE DE INSTRUCCIONES                   "<<endl;
+  cout<<endl<<endl<<"                   REPORTE DE INSTRUCCIONES                   "<<endl;
   cout<<"__________________________________________________________"<<endl;
   for (size_t i=0;i<num_ins;i++){
     cout<<endl<<endl<<"Reporte de instruccion "<<i+1<<":"<<endl;
@@ -243,6 +247,5 @@ void reporte(vector<instruccion_t*> instrucciones, almacen_t* a1, numero num_ins
     else {cout<<"Inactivo.";}
   }
 }
-
 
 //De rutas en adelante
