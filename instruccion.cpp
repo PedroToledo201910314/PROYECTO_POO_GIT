@@ -16,10 +16,10 @@ void instruccion_t::set_estado(bool _estado){
 numero instruccion_t::get_n_robot(){
   return _n_robot; 
 }
-letra instruccion::get_operacion(){
+letra instruccion_t::get_operacion(){
   return _operacion;
 }
-string instruccion::get_producto() {
+string instruccion_t::get_producto() {
   return _producto;
 }
 coordenada instruccion_t::get_destinox(){
