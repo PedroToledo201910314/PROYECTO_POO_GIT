@@ -38,6 +38,4 @@ int main() {
   reporte_slots(a1);
 
   cout<<endl<<"GRACIAS POR USAR TISG WAREHOUSING!!!";
-  
-  return 0;
 }
