@@ -252,7 +252,7 @@ void rutas(numero n_instrucciones,vector<instruccion_t*> instrucciones,numero fi
   cout<<endl<<endl<<"                   RUTAS PARA CADA INSTRUCCION                  "<<endl<<"_________________________________________________________"<<endl;
 //vector<columna> costruir_ruta_p(coordenada xi, coordenada yi, coordenada xf, coordenada yf)
 ofstream rutas ("rutas.txt");
-rutas<<endl<<endl<<"                   RUTAS PARA CADA INSTRUCCION                  "<<endl<<"_________________________________________________________"<<endl;
+rutas<<"                   RUTAS PARA CADA INSTRUCCION                  "<<endl<<"_________________________________________________________"<<endl<<endl;
   for (size_t k=0;k<n_instrucciones;k++){
     if(instrucciones[k]->get_estado()==true){
       auto robot=a1->get_robots()[instrucciones[k]->get_n_robot()-1];
@@ -322,7 +322,7 @@ rutas<<endl<<endl<<"                   RUTAS PARA CADA INSTRUCCION              
 
 void genera_archivos_slots(almacen_t* almacen_de_slots){
   ofstream slots("slots.txt");
-  slots<<endl<<endl<<"                      REPORTE DE SLOTS                   "<<endl;
+  slots<<"                      REPORTE DE SLOTS                   "<<endl;
   slots<<"__________________________________________________________"<<endl;
   for (size_t i=0;i<almacen_de_slots->get_filas();i++){
     for (size_t j=0;j<almacen_de_slots->get_columnas();j++){
