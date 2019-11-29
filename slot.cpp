@@ -20,7 +20,7 @@ void slot_t::set_tipo_producto(string tipo_producto){
   if (_estado=='E'){
     _tipo_producto = "Ninguno";
   }
-  else if(_estado=='L'){
+  else if(_estado=='L' || _estado =='F'){
     _tipo_producto=tipo_producto; 
   }
 }
@@ -30,14 +30,8 @@ void slot_t::set_cantidad(numero cantidad){
 void slot_t::set_estado(letra estado){
   _estado=estado;
 }
-void slot_t::set_capacidad(numero capacidad){
-  _capacidad=capacidad;
-}
 numero slot_t::get_posicionx(){
   return _posx;
-}
-numero slot_t::get_posiciony(){
-  return _posy;
 }
 numero slot_t::get_posiciony(){
   return _posy;
@@ -71,20 +65,17 @@ void slot_t::actualizar(){
   }
 }
 void slot_t::adicionar(string tipo_producto){
-  if(_tipo_producto==tipo_producto){
-    if(_cantidad+1<=_capacidad){
-      _cantidad++;
-    }
+  if(_tipo_producto!=tipo_producto && _tipo_producto!="Ninguno"){
+   cout<<"El producto que desea ingresar es diferente al que almacena el slot.";
   }
-  else if(_tipo_producto=="Ninguno"){
+  else{
+    cout<<"No hubo problemas";
     _tipo_producto=tipo_producto;
-    if(_cantidad+1<=_capacidad){
-      _cantidad++;
-    }
+     _cantidad++;
   }
-  actualizar();
+ actualizar();
 }
-void slot_t::retirar(string tipo_producto){
+void slot_t::retirar(){
   if(_cantidad-1>=0){
     _cantidad--;
   }
