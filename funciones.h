@@ -9,6 +9,11 @@
 void bienvenida();
 void ingresar_coordenadas_ruta(robot_t* robot1, instruccion_t* ins);
 
+bool colision(columna coord, robot_t* robot);
+numero posicion_colision(robot_t* robot_a, robot_t* robot_b);
+vector<columna> rut_alt(robot_t* robot_p, robot_t* robot_s, almacen_t* almacen);
+void agregar_ruta_alterna(robot_t* robot_p, vector<robot_t*> robots, almacen_t* almacen);
+
 void cantidad_robots(int & n_robots, numero f, numero c);
 void num_instrucciones(int &num);
 void setea_almacen (numero &filas, numero &columnas, numero &capacidad);
