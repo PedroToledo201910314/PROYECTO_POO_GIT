@@ -1,7 +1,10 @@
-          **Bienvenido a TISG Warehousing**
+ 
 
-El siguiente programa te permite visualizar la mejor ruta que cada uno de tus robots seguirá.
+                                                        **Bienvenido a TISG Warehousing**
 
-~Disfrútalo~
+ El siguiente programa te permite visualizar la ruta que cada uno de tus robots seguirá sobre el almacén para dejar y/o llevar los productos que 
+ indiques.
 
-----------------------------------------------------------
+                                                                 ~Disfrútalo~
+
+ ------------------------------------------------------------------------------------------------------------------------------------------------
