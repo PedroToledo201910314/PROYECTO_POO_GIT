@@ -95,4 +95,3 @@ void almacen_t::llena_almacen (numero num_robots){
     matriz[robots[k]->get_homex()][robots[k]->get_homey()]=number;
   }
 }
-
