@@ -60,6 +60,125 @@ vector<columna> costruir_ruta_p(coordenada xi, coordenada yi, coordenada xf, coo
   return ruta_p;
 }
 
+bool colision(columna coord, robot_t* robot){
+  bool verdad;
+    if(coord[0]==robot->get_ubicacion_actualx()&&coord[1]==robot->get_ubicacion_actualy())
+      verdad=true;
+    else
+      verdad=false;
+  return verdad;
+}
+
+numero posicion_colision(robot_t* robot_a, robot_t* robot_b){
+  numero posicion_colision;
+  for(int i=0; i<robot_a->_ruta.size(); ++i){
+    if(colision(robot_a->_ruta[i],robot_b)){
+      posicion_colision=i;
+    }
+    else
+      posicion_colision=-1;
+  }
+  return posicion_colision;
+}
+
+vector<columna> rut_alt(robot_t* robot_p, robot_t* robot_s, almacen_t* almacen){
+  coordenada x,y;
+  coordenada dtx, dty;
+  vector<columna> ruta_alterna;
+  numero n=posicion_colision(robot_p, robot_s);
+  coordenada ubx=robot_s->get_ubicacion_actualx();
+  coordenada uby=robot_s->get_ubicacion_actualy();
+  if(n>0){
+    if(robot_p->_ruta[n-1][0]==ubx){
+      if(robot_p->_ruta[n+1][0]==ubx-1){
+        x=ubx-1;
+        y=robot_p->_ruta[n-1][1];
+        dtx=robot_p->_ruta[n+1][0];
+        dty=robot_p->_ruta[n+1][1];
+      }
+      else if(robot_p->_ruta[n+1][0]==ubx+1){
+        x=ubx+1;
+        y=robot_p->_ruta[n-1][1];
+        dtx=robot_p->_ruta[n+1][0];
+        dty=robot_p->_ruta[n+1][1];
+      }
+      else{
+        y=robot_p->_ruta[n-1][1];
+        if(robot_p->_ruta[n-1][0]-1<0){
+          x=ubx+1;
+          dtx=robot_p->_ruta[n+1][0]+1;
+          dty=robot_p->_ruta[n+1][1];
+        }
+        else if(robot_p->_ruta[n-1][0]+1>almacen->get_filas()){
+          x=ubx-1;
+          dtx=robot_p->_ruta[n+1][0]-1;
+          dty=robot_p->_ruta[n+1][1];
+        }
+        else{
+          if(robot_p->_ruta[robot_p->_ruta.size()-1][1]>=robot_p->_ruta[0][1]){
+            x=ubx+1;
+            dtx=robot_p->_ruta[n+1][0]+1;
+            dty=robot_p->_ruta[n+1][1];
+          }
+          else{
+            x=ubx-1;
+            dtx=robot_p->_ruta[n+1][0]-1;
+            dty=robot_p->_ruta[n+1][1];
+          }
+        }
+      }
+    }
+    else if (robot_p->_ruta[n-1][1]==uby){
+      if(robot_p->_ruta[n+1][1]==uby-1){
+        x=robot_p->_ruta[n-1][0];
+        y=uby-1;
+        dtx=robot_p->_ruta[n+1][0];
+        dty=robot_p->_ruta[n+1][1];
+      }
+      else if(robot_p->_ruta[n+1][1]==uby+1){
+        x=robot_p->_ruta[n-1][0];
+        y=uby+1;
+        dtx=robot_p->_ruta[n+1][0];
+        dty=robot_p->_ruta[n+1][1];
+      }
+      else{
+        x=robot_p->_ruta[n-1][0];
+        if(robot_p->_ruta[n-1][1]-1<0){
+          y=uby+1;
+          dtx=robot_p->_ruta[n+1][0];
+          dty=robot_p->_ruta[n+1][1]+1;
+        }
+        else if(robot_p->_ruta[n-1][1]+1>almacen->get_columnas()){
+          y=uby-1;
+          dtx=robot_p->_ruta[n+1][0];
+          dty=robot_p->_ruta[n+1][1]-1;
+        }
+        else{
+          if(robot_p->_ruta[robot_p->_ruta.size()-1][0]>=robot_p->_ruta[0][0]){
+            y=uby+1;
+            dtx=robot_p->_ruta[n+1][0];
+            dty=robot_p->_ruta[n+1][1]+1;
+          }
+          else{
+            y=uby-1;
+            dtx=robot_p->_ruta[n+1][0];
+            dty=robot_p->_ruta[n+1][1]-1;
+          }
+        }
+      }
+    }
+    columna xy= {x,y};
+    ruta_alterna.push_back(xy);
+    vector<columna> va=costruir_ruta_p(x,y,dtx,dty);
+    for(auto &e:va){
+      ruta_alterna.push_back(e);
+    }
+  }
+  return ruta_alterna;
+}
+
+
+
 void bienvenida(){
   ifstream archivo;
   archivo.open("inicio.txt");
@@ -69,6 +188,20 @@ void bienvenida(){
     cout<<texto<<endl;
   }
   archivo.close();
+}
+
+void agregar_ruta_alterna(robot_t* &robot_p, vector<robot_t*> robots, almacen_t* almacen){
+  for(auto &rbt:robots){
+    vector<columna> ruta_agregar=rut_alt(robot_p, rbt, almacen);
+    numero nf=posicion_colision(robot_p, rbt); 
+    if(nf>1){
+      robot_p->_ruta.erase(begin(robot_p->_ruta)+nf);
+      for(auto &elem:ruta_agregar){
+        robot_p->_ruta.emplace(begin(robot_p->_ruta)+nf, elem);
+        nf=nf+1;
+      }
+    }
+  }
 }
 
 void cantidad_robots(int & n_robots, numero f, numero c){
@@ -290,6 +423,8 @@ rutas<<"                   RUTAS PARA CADA INSTRUCCION                  "<<endl<
         robot->_ruta.push_back(i);
         }
       robot->_rutas_dibujar.push_back(v);
+      
+      agregar_ruta_alterna(robot, a1->get_robots(), a1);
 
       vector<arreglo> dibujo_ruta (filas_almacen,arreglo(columnas_almacen,' '));
       
